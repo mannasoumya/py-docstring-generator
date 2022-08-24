@@ -9,6 +9,7 @@ if len(sys.argv) == 1:
 file_name    = sys.argv[1]
 file_content = None
 no_counter   = 0
+    
 
 with open(file_name) as f:
     file_content = f.read()
@@ -140,7 +141,7 @@ if __name__ == "__main__":
         print("No docstrings to save... Exiting")
         sys.exit(0)
     
-    new_file_name = f"{file_name.rstrip('.py')+'_docstrings.py'}"
+    new_file_name = f"{file_name[:file_name.rfind('.py')]}_docstrings.py"
     
     with open(new_file_name,"w") as f:
         f.write(new_content)
