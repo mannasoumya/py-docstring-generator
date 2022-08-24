@@ -37,9 +37,11 @@ Function `hello3` has no parameters
 Do you want to write docstring for `hello3` ? (y/n)  
 Enter function summary:  This is third hello with no parameters
 Are you sure? (y/n)  
+
 New file with docstings saved at : `test_docstrings.py`
 ```
 
+#### When all docstrings are added, skip all functions
 ```console
 $ python3 docstring_generator_auto.py test.py
 
