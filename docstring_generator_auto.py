@@ -97,6 +97,7 @@ if __name__ == "__main__":
                     unparsed_functions[fn_name]["desc"] = summary
                     consent = True
 
+            summary = summary + "\n\nArgs:"
             for param in params:
                 print()
                 param_and_type = param.split(":")
@@ -104,12 +105,12 @@ if __name__ == "__main__":
                     param_name = param_and_type[0].strip()
                     param_type = param_and_type[1].strip()
                     print(f"{param_name} : {param_type}")
-                    summary = summary + "\n" + param_name + " " + "(" + param_type + ") : "
+                    summary = summary + "\n" + param_name + " " + "(" + param_type + ") :"
                 
                 if len(param_and_type) == 1:
                     param_name = param_and_type[0].strip()
                     print(f"{param_name} : ")
-                    summary = summary + "\n" + param_name + " " + "( _obj_ ) : "
+                    summary = summary + "\n" + param_name + " " + "( _obj_ ) :"
                 
                 consent = False
                 while consent == False:
