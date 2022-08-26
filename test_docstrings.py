@@ -6,6 +6,9 @@ def hello1(a:str,b:list,c):
     a (str) : first param
     b (list) : second param
     c ( _obj_ ) : third param
+    
+    Returns:
+    Returns None
     """
     pass
 
@@ -14,12 +17,18 @@ def hello2(a:tuple):
     This is second hello
     
     Args:
-    a (tuple) : Tuple param
+    a (tuple) : tuple param
+    
+    Returns:
+    Returns None
     """
     pass
 
-def hello3():
+def hello3() -> str:
     """
     This is third hello
+    
+    Returns:
+    str: Returns hello3
     """
-    pass
+    return "hello3"

@@ -1,8 +1,8 @@
-def hello1(a,b,c):
+def hello1(a:str,b:list,c):
     pass
 
-def hello2(a):
+def hello2(a:tuple):
     pass
 
-def hello3():
-    pass
+def hello3() -> str:
+    return "hello3"

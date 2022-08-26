@@ -23,6 +23,11 @@ c :
 Enter parameter summary:  third param
 Are you sure? (y/n)  y
 
+
+No explicit return type found for function `hello1`
+Enter return summary:  Returns None
+Are you sure? (y/n)  y
+
 Function `hello2`
 Params ['a:tuple']
 Do you want to write docstring for `hello2` ? (y/n)  y
@@ -30,12 +35,21 @@ Enter function summary:  This is second hello
 Are you sure? (y/n)  y
 
 a : tuple
-Enter parameter summary:  Tuple param
+Enter parameter summary:  tuple param
+Are you sure? (y/n)  y
+
+
+No explicit return type found for function `hello2`
+Enter return summary:  Returns None
 Are you sure? (y/n)  y
 
 Function `hello3` has no parameters
 Do you want to write docstring for `hello3` ? (y/n)  y
 Enter function summary:  This is third hello
+Are you sure? (y/n)  y
+
+Return type of function `hello3` is `str`
+Enter return summary:  Returns hello3
 Are you sure? (y/n)  y
 
 New file with docstings saved at : `test_docstrings.py`

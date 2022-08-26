@@ -44,6 +44,12 @@ if __name__ == "__main__":
                 raise Exception(f"Syntax Error near line {i+1}")
 
             fn_name_with_params = line.lstrip("def").strip().strip("\t")
+            before_and_return_type = fn_name_with_params.split("->")
+
+            ret_type = None
+
+            if len(before_and_return_type) == 2:
+                ret_type = before_and_return_type[1].strip().strip("\t").rstrip(":").strip().strip("\t")
 
             start_index = fn_name_with_params.find("(")
             if start_index == -1:
@@ -54,12 +60,14 @@ if __name__ == "__main__":
                 raise Exception(f"Syntax Error near line {i+1}")
             
             fn_name = fn_name_with_params[0:start_index]
+            fn_name = fn_name.strip().strip("\t")
 
             if fn_name in unparsed_functions:
                 raise Exception(f"Duplicate function `{fn_name}`")
 
             unparsed_functions[fn_name] = {}
-            unparsed_functions[fn_name]["signature"] = fn_name_with_params[start_index+1:last_index]
+            unparsed_functions[fn_name]["ret_type"]    = ret_type
+            unparsed_functions[fn_name]["signature"]   = fn_name_with_params[start_index+1:last_index]
             unparsed_functions[fn_name]["line_number"] = i
             line_number_fn_name[i] = fn_name
 
@@ -121,8 +129,23 @@ if __name__ == "__main__":
                         consent = True
                 
                 summary = summary + " " + param_summary
-                
-            unparsed_functions[fn_name]["desc"] = summary
+                        
+        summary = summary + "\n\n" + "Returns:\n"
+        print()
+        if unparsed_functions[fn_name]["ret_type"] is None:
+            print(f"\nNo explicit return type found for function `{fn_name}`")
+        else:
+            print(f"Return type of function `{fn_name}` is `{unparsed_functions[fn_name]['ret_type']}`")
+            summary = summary + unparsed_functions[fn_name]["ret_type"] + ": "
+        
+        consent = False
+        while consent == False:
+            return_summary = input("Enter return summary:  ")
+            inp = input("Are you sure? (y/n)  ")
+            if inp.strip().lower() == "" or inp.strip().lower() in ("y", "yes"):
+                summary = summary + return_summary
+                unparsed_functions[fn_name]["desc"] = summary
+                consent = True
 
     new_content = ""
 
