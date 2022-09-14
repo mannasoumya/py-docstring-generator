@@ -91,7 +91,10 @@ if __name__ == "__main__":
 
             print(f"Function `{fn_name}`")
             params = fn_signature.split(",")
-            print(f"Params {params}")
+            params_ = []
+            for param in params:
+                params_.append(param.strip(" ").strip("\t"))
+            print(f"Params: {params_}")
             ans = input(f"Do you want to write docstring for `{fn_name}` ? (y/n)  ")
             if ans.strip().lower() == "n" or ans.strip().lower() == "no":
                 no_counter = no_counter + 1
