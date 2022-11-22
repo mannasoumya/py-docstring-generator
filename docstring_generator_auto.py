@@ -33,6 +33,12 @@ def space_or_tab_counter(line):
     
     return (space_or_tab,count)
 
+def get_next_line_number_starting_with_space_or_tab(lines,i):
+    assert len(lines) > 0, "Lines cannot be empty"
+    for j in range(i+1,len(lines)):
+        if lines[j].startswith("\t") or lines[j].startswith(" "):
+            return j
+
 if __name__ == "__main__":
     for i in range(len(lines)):
         line = lines[i].strip().strip("\t")
@@ -155,7 +161,8 @@ if __name__ == "__main__":
     for i in range(len(lines)):
         new_content = new_content + lines[i] + "\n"
         if i in line_number_fn_name:
-            space_or_tab , num = space_or_tab_counter(lines[i+1])
+            next_index_to_count = get_next_line_number_starting_with_space_or_tab(lines,i)
+            space_or_tab , num = space_or_tab_counter(lines[next_index_to_count])
             if "desc" in unparsed_functions[line_number_fn_name[i]]:
                 new_content = new_content + num * space_or_tab + '"""\n'
                 desc_lines = unparsed_functions[line_number_fn_name[i]]["desc"].split("\n")
